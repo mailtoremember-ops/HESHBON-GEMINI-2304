@@ -3,26 +3,25 @@
     windows_subsystem = "windows"
 )]
 
+use tauri::Manager; // הוספנו כדי לשלוט בחלון
 use serde::{Serialize, Deserialize};
 
 #[derive(Serialize)]
 struct Entry {
     id: u32,
     content: String,
-    #[serde(rename = "type")] // משנים את השם כי type זו מילה שמורה
+    #[serde(rename = "type")]
     entry_type: String,
     date: u64,
 }
 
 #[tauri::command]
 fn check_auth(password: String) -> bool {
-    // זמני: מדמה הצפנה
     password == "1234"
 }
 
 #[tauri::command]
 fn get_entries() -> Vec<Entry> {
-    // זמני: מוודא שה-Rust שולח נתונים ל-JS
     vec![
         Entry {
             id: 1,
@@ -35,6 +34,12 @@ fn get_entries() -> Vec<Entry> {
 
 fn main() {
     tauri::Builder::default()
+        .setup(|app| {
+            // פותח את כלי המפתחים (הקונסולה) אוטומטית כשהאפליקציה עולה
+            let window = app.get_window("main").unwrap();
+            window.open_devtools();
+            Ok(())
+        })
         .invoke_handler(tauri::generate_handler![check_auth, get_entries])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
