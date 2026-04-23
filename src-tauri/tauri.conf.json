@@ -5,7 +5,7 @@
     "distDir": "../src"
   },
   "package": {
-    "productName": "חשבון נפש",
+    "productName": "HeshbonNefesh",
     "version": "0.1.0"
   },
   "tauri": {
