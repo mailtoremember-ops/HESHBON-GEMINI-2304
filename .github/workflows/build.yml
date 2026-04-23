@@ -1,7 +1,7 @@
 name: Build Tauri Windows App
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # הפעלה ידנית בלבד!
 
 jobs:
   build-windows:
@@ -38,4 +38,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: windows-installer
-          path: src-tauri/target/release/bundle/msi/*.msi
+          path: '**/*.msi' # חיפוש גמיש בכל התיקיות
