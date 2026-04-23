@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>חשבון נפש</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- מסך כניסה -->
+    <div id="login-screen" class="screen">
+        <h1>חשבון נפש</h1>
+        <input type="password" id="password-input" placeholder="הכנס סיסמה">
+        <button id="login-btn">כניסה</button>
+        <p id="login-error" style="color: red; display: none;">סיסמה שגויה</p>
+    </div>
+
+    <!-- מסך יומן -->
+    <div id="journal-screen" class="screen" style="display: none;">
+        <header>
+            <h2>יומן</h2>
+            <button id="settings-btn">⚙️</button>
+        </header>
+        <div class="compose-area">
+            <textarea id="entry-content" placeholder="מה עובר עליך היום?"></textarea>
+            <button id="save-entry-btn">שמור רשומה</button>
+        </div>
+        <div id="entries-list">
+            <!-- רשומות יופיעו כאן -->
+        </div>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
