@@ -1,0 +1,158 @@
+/* משתני עיצוב - מראה נקי ושקט */
+:root {
+    --bg-color: #f7f7f8;
+    --surface-color: #ffffff;
+    --text-main: #333333;
+    --text-muted: #888888;
+    --border-color: #e5e5e5;
+    --primary-color: #10a37f; /* צבע ירוק-עדין סטייל ChatGPT */
+    --primary-hover: #0e906f;
+    --radius: 8px;
+    
+    /* צבעי סוגי רשומות - עדינים */
+    --type-positive: #10a37f;
+    --type-negative: #e05252;
+    --type-neutral: #888888;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    direction: rtl;
+    line-height: 1.5;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+/* מסכים */
+.screen {
+    width: 100%;
+    max-width: 800px; /* רוחב נוח לקריאה, לא נמרח על כל המסך */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* מרכוז למסכי התחברות */
+#login-screen, #setup-screen {
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-box {
+    background: var(--surface-color);
+    padding: 40px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.auth-box h1 { font-size: 1.5rem; margin-bottom: 20px; font-weight: 500; }
+
+input[type="password"], input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s;
+}
+input:focus { border-color: var(--primary-color); }
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+button:hover { background-color: var(--primary-hover); }
+
+/* --- אזור היומן --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.compose-area {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 15px;
+    margin-bottom: 30px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 80px;
+    border: none;
+    resize: none;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    background: transparent;
+    margin-bottom: 10px;
+}
+
+.compose-tools {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 10px;
+}
+
+select, .rating-input {
+    padding: 6px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--bg-color);
+}
+
+/* רשימת הרשומות */
+#entries-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.entry-card {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 15px;
+    border-right: 4px solid var(--type-neutral); /* פס צבע עדין מימין */
+}
+
+.entry-card.type-positive { border-right-color: var(--type-positive); }
+.entry-card.type-negative { border-right-color: var(--type-negative); }
+
+.entry-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display: flex;
+    gap: 10px;
+}
+
+.entry-content {
+    white-space: pre-wrap; /* שומר על ירידות שורה */
+}
