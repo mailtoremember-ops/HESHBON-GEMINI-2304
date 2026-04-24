@@ -7,27 +7,53 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- מסך כניסה -->
-    <div id="login-screen" class="screen">
-        <h1>חשבון נפש</h1>
-        <input type="password" id="password-input" placeholder="הכנס סיסמה">
-        <button id="login-btn">כניסה</button>
-        <p id="login-error" style="color: red; display: none;">סיסמה שגויה</p>
+
+    <!-- מסך הגדרת סיסמה (הפעלה ראשונה) -->
+    <div id="setup-screen" class="screen" style="display: none;">
+        <div class="auth-box">
+            <h1>ברוך הבא</h1>
+            <p style="margin-bottom: 15px; color: var(--text-muted); font-size: 0.9rem;">הגדר סיסמה להצפנת היומן. לא ניתן לשחזר אותה אם תאבד!</p>
+            <input type="password" id="setup-password" placeholder="בחר סיסמה חזקה">
+            <button id="setup-btn" style="width: 100%;">הגדר והתחל</button>
+        </div>
     </div>
 
-    <!-- מסך יומן -->
+    <!-- מסך כניסה -->
+    <div id="login-screen" class="screen" style="display: none;">
+        <div class="auth-box">
+            <h1>חשבון נפש</h1>
+            <input type="password" id="login-password" placeholder="הכנס סיסמה לפענוח">
+            <button id="login-btn" style="width: 100%;">כניסה</button>
+            <p id="login-error" style="color: var(--type-negative); display: none; margin-top: 10px; font-size: 0.9rem;">סיסמה שגויה</p>
+        </div>
+    </div>
+
+    <!-- מסך היומן הראשי -->
     <div id="journal-screen" class="screen" style="display: none;">
         <header>
-            <h2>יומן</h2>
-            <button id="settings-btn">⚙️</button>
+            <h2 id="current-date-title">היומן שלי</h2>
+            <div>
+                <button id="btn-lists" style="background: transparent; color: var(--text-muted);">רשימות</button>
+                <button id="btn-settings" style="background: transparent; color: var(--text-muted);">⚙️</button>
+            </div>
         </header>
+
         <div class="compose-area">
-            <textarea id="entry-content" placeholder="מה עובר עליך היום?"></textarea>
-            <button id="save-entry-btn">שמור רשומה</button>
+            <textarea id="entry-text" placeholder="מה עובר עליך היום?"></textarea>
+            <div class="compose-tools">
+                <select id="entry-type">
+                    <option value="neutral">⚪ ניטרלי</option>
+                    <option value="positive">🟢 חיובי</option>
+                    <option value="negative">🔴 שלילי</option>
+                </select>
+                <input type="text" id="entry-category" placeholder="קטגוריה (אופציונלי)" style="margin: 0; padding: 6px; width: 130px;">
+                <input type="number" id="entry-rating" class="rating-input" placeholder="דירוג" style="width: 70px;">
+                <div style="flex-grow: 1;"></div> <!-- רווח גמיש -->
+                <button id="save-btn">שמור</button>
+            </div>
         </div>
-        <div id="entries-list">
-            <!-- רשומות יופיעו כאן -->
-        </div>
+
+        <div id="entries-list"></div>
     </div>
 
     <script type="module" src="js/app.js"></script>
